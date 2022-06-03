@@ -1,0 +1,73 @@
+<%- include ("../layouts/header") %>
+
+<div class="container my-4">
+    <div class="row">
+        <div class="col-lg-8">
+            <h1 class="mt-4"> 
+                <%= video.title %>
+            </h1>
+
+            <p class="lead">
+                by <%= video.user.name %>
+            </p>
+            <hr>
+
+            <p>
+                Posted on
+
+                <% 
+                    var createdAt = new Date(video.createdAt);
+                    var date = createdAt.getDate() + "";
+                %>
+
+                <%= date.padStart(2, "0") + " " + months[createdAt.getMonth()] + ", " + createdAt.getFullYear() %>
+            </p>
+
+            <hr>
+
+            <input type="hidden" id="videoId" value="<%= video._id %>"> 
+            <input type="hidden" id="category" value="<%= video.category %>"> 
+
+            <video id="videoPlayer" controls style="width: 100%;"
+                poster="<%= baseUrl + video.thumbnail %>"
+                src="<%= baseUrl + video.filePath %>">
+
+            </video>
+
+            <div class="row">
+                <div class="col-md-4">
+                    <p class="mb-0"> 
+                        <i class="fa fa-eye"></i>
+                        <%= video.views %> views
+                    </p>
+                </div>
+                <div class="col-md-4">
+                    <%- include ("like-dislike") %>
+                </div>
+
+                <div class="col-md-4">
+                    <%- include ("subscribe") %>
+                </div>
+            </div>
+
+            <hr>
+
+            <p class="text-center">
+                <b>Category</b>
+                <%= video.category %>
+            </p>
+
+            <hr>
+
+            <p class="lead">
+                <%= video.description %>
+             </p>
+
+             <%- include ("comments") %>
+        </div>
+
+    </div>
+
+</div>
+
+<%- include ("../layouts/footer") %>

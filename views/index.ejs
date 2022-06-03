@@ -1,0 +1,44 @@
+<%- include ("layouts/header") %>
+
+<div class="container my-4">
+    <div class="row text-center"></div>
+
+<% videos.forEach(function (video) { %> 
+
+    <div class="col-md-3 mb-4">
+        <div class="card h-100">
+            <img class="card-img-top" src="<%= video.thumbnail %>" style="height: 300px; object-fit: cover;">
+
+            <p>
+                <%= video.minutes + ":" + video.seconds %>
+            </p>
+
+            <div class="card-body">
+                <h4 class="card-title">
+                    <%= video.title %>
+                </h4>
+
+                <p class="card-text">
+                    <%= video.category %>
+                </p>
+            </div>
+
+            <div class="card-footer">
+                <a href="/watch/<%= video.watch %>" class="btn btn-primary">
+                    View
+                </a>
+            </div>
+
+        </div>
+
+    </div>
+
+
+<% }) %>
+
+
+</div>
+
+
+<%- include ("layouts/footer") %>
+
